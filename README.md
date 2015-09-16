@@ -26,3 +26,16 @@ Homework -----> Anything that is included in the readings/studied outside
 	of the number which can then be added to another number to perform
 	a subtraction. Method for Performing Twos Compliment can be found 
 	in /Homework/Chapter 4. 
+
+	Chapter 5 From Raspberry Pi Assembly Language
+
+	This chapter discusses how registers in the ARM processors are used, 
+	how they can be leveraged and their specific functions. Memory is accessed
+	in words and must be word-aligned. Registers R13-R16 are discussed, as well
+	as the 'S' suffix for allowing operations like SUB to set a flag in the
+	Status Register. Examples of how it is used are in Register.txt. 
+
+	Chapter 6 From Raspberry Pi Assembly Language
+	
+	This chapter provides a series of operations that are used to process data.
+	Examples of a couple of the 18 instructions are in the Chapter 6 folder.
