@@ -15,6 +15,7 @@ Class -----> Any Programs written during lecture
 
 Homework -----> Anything that is included in the readings/studied outside
 		of the classroom will be found in this folder.
+
 	Chapter 4 From Raspberry Pi Assembly Language
 
 	This chapter discusses the Bits of a RISC Machine. More importantly
