@@ -1,0 +1,21 @@
+Converting Base10 to Binary and Hexadecimal 
+
+1 Byte Representations
+Binary
+37 = 0010 0101		-37 = 1101 1010 Ones Compliment
+			    = 1101 1011 Twos Compliment
+   = 0x25		    = 0xDB
+
+2 Byte Representations
+Binary
+315 = 0000 0001 0011 1011	-315 = 1111 1110 1100 0100 Ones Compliment
+    = 0x013B			     = 1111 1110 1100 0101 Twos Compliment
+				     = 0xFEC5
+
+4 Byte Representations
+Binary
+ 39,363 = 0000 0000 0000 0000 1001 1001 1100 0011
+	= 0x000099c3
+-39,363 = 1111 1111 1111 1111 0110 0110 0011 1100 Ones Compliment
+	= 1111 1111 1111 1111 0110 0110 0011 1101 Twos Compliment
+	= 0xFFFF663D
