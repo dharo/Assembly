@@ -1,0 +1,38 @@
+Byte and Word Accessed Memory ---Page 51 From Raspberry Pi Assembly Language
+
+	   bit31			 bit 00
+(Word 0)>   |   b03  |  b02  |  b01  |  b00  |	<----an entire word is 32 bits for
+(Word 1)>   |   b07  |  b06  |  b05  |  b04  |	     Rasperry Pi ARM processor
+(Word 2)>   |   b0B  |  b0A  |  b09  |  b08  |
+(Word 3)>   |   b0F  |  b0E  |  b0D  |  b0C  |
+	
+  Figure 5a. memory word blocks on the ARM
+
+The processor 'sees' memory in these word blocks,
+but can also address individual bytes within each 
+word (ex, b01 would be a byte it can refer to)
+
+Word blocks are aligned in this fashion and cannot
+be changed. You cannot have a Word Block aligned 
+like this:
+
+(Word N)>   | b06  |  b05  |  b04  |  b03  | <<<<<<<<< NO!!!!!!
+
+Addresses in memory are given hexadecimal numbers (duh)
+A memory address that corresponds to the start of a word is 
+called a -word boundary- and it is said to be word aligned.
+A memory address is said to be word aligned if it is directly
+divisible by 4. The following is word aligned:
+
+0x00009030	
+0x00009034
+0x00009038
+0x0000903C
+
+Word aligned addresses are significant as they are fundamental
+to the way to processor fetches and executes machine code.
+
+Example, the addresss 0x00009032 is NOT word aligned. You cannot
+store an ARM machine code instruction in a non0word aligned address.
+
+

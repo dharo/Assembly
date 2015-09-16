@@ -1,0 +1,131 @@
+Registers --- Raspberry Pi Assembly Language
+
+In user mode on the raspberry pi, there are 16 registers
+where it stores, tracks and processes information. These 
+16 registers are capable of holding a word (four bytes)
+of information.
+
+Registers R0-R12 are available at any time.
+Registers R13-R15 have defined uses.
+* R13-R15 are only used occasionally and are 
+  manipulated by just a few instructions.
+
+****R15 should not be manipulated by the user
+
+Each Register is capable of holding an address,
+this is a key function of registers.
+
+GCC Assembler allows the use of labels
+for registers as listed
+R0, R1
+
+LDR  - LoaD a Register
+STM - STore to Memory
+
+LDR R1, [R5]	@ Load R1 with contents of loc in R5
+STR R1, [R6]	@ Store R1 content at location in R6
+		@ [] brackets enclosing registers are
+		@ memory addresses
+//////////////////////////////////////////////////////
+R15 - Program Counter(PC)
+
+The program Counter - R15 is important!
+Treat it with respect or it will cause program to take a shit.
+
+Its function is to keep track of where the program is in execution of machine code.
+The PC holds the address of the instruction to be executed next --more on this in Chapter 13
+The GCC Assembler allows use of label PC as well as R15 
+(Meaning PC and R15 are interchangable labels)
+//////////////////////////////////////////////////////
+
+Current Program Status Register - (CPSR)(Status Register)(R16)
+
+Specific bits within this register are used to determine if certain
+conditions have occured or not.
+
+31  30  29  28 |  27...8 |  7  6  5  |  4  3  2  1  0
+N   Z   C   V               I  F  T        mode
+
+N = Negative Flag
+Z = Zero Flag
+C = Carry Flag
+V = Overflow Flag
+
+When an instruction executes, if it has been instructed to update the 
+Status Register it will tell the specific Flag to turn on(1) or stay off (0)
+
+BEQ = Branch if EQual
+BNE = Branch if Not Equal
+
+
+BEQ zeroset		@ jump to zeroset if Z = 1
+BNE zeroclear		@ jump to zeroclear if Z = 0
+
+BNE is often used to make sections of a program repeat or loop
+a predetermined number of times until the number decrements to
+zero, at which point the zero flag will be set.
+///////////////////////////////////////////////////////////////////////////
+
+Setting Flags
+
+Two instuctions that have direct effect on the status register flags
+are:
+
+CMP = CoMPare			CMP <Operand1> <Operand2>	@ <Op2> - <Op1> results in +, 0, or -
+CPN = CoMPare Negative
+
+CMP R0, R1	@ Compare R0 with R1. R0 minus R1
+CMP R0, #1	@ Compare R0 with #1. R0 minus 1
+
+CMP is often used with BEQ to create a branch or jump to a new
+part of the program
+
+CMP R0, R1
+BEQ zeroflagset
+
+Note* CMP and CPN are the only instructions that directly effect the Status Register
+      for example, any other type of subtraction that resulted in zero like this
+        If R0 = 1	R1 = 1
+	SUB R0, R0, R1
+	The result would be zero, but the zero flag would not be altered.
+/////////////////////////////////////////////////////////////////////////////
+
+
+S Suffix
+
+Adding 'S' to the end of an instruction such as SUB would allow the result of the
+operation to effect the Status Register.
+
+SUBS R0,R0,R1		@ look at section above
+
+this would result in causing the Zero flag to be set.
+
+This saves use of extra line of code from this:
+	SUB R0,R0,R1
+	CMP R0,#0
+	BEQ iszero
+To this:
+	SUBS R0,R0,R1
+	BEQ iszero
+///////////////////////////////////////////////////////////////////////////////
+
+R14: The Link Register (LR)
+
+BEQ and BNE offer difinitive way of branching if equal or branching if negative.
+
+Branch with Link (BL) 
+	This allows to jump somewhere else in the program and allows you
+	to come back to the point right after the BL instruction.
+
+When BL is executed, the address of the next instruction (what it will return to)
+is then loaded to the R14 (Link Register). When the subroutine is completed, the LR
+is then loaded to the PC and the program continues working from where it last left 
+off before doing the subroutine.
+
+One way of doing this is
+MOV R15, R14	OR	MOV PC, LR
+
+
+R13: Stack Pointer
+
+-----This will be covered in greater detail in Chapter 17-----
