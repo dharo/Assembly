@@ -1,0 +1,70 @@
+Chapter 6 Notes
+
+Data Processing
+
+Data Processing instructions, 18 total:
+
+ADD, ADC, SUB, SBC, RSB, RSC
+MOV, MVN, CMP, CPN
+AND, ORR, EOR
+BIC, TST, TEQ
+MUL, MLA
+
+*AND, ORR, EOR, BIC, TST, and TEQ are examined in next Chapter.
+
+<Instruction>
+	This is the mnemonic to be assembled. It can be used in raw
+	form like listed above, or  with addition of suffixes like
+	'S'
+<Dest>
+	This is the destination of where the result will be stored.
+	The destination will always be an ARM register from R0-R15
+<Operand 1>
+	First item of info that will be manipulated. Will always be
+	an ARM register from R0-R15. Operand1 may also be same as
+	destination.
+<Operand2>
+	Operand2 has more flexibility than Operand1. Operand2 can 
+	also be an ARM register like Operand1; however, Operand2 can
+	be a specified value or a constant.
+
+   Examples of data processing instructions
+	ADD R0,R1,R2		@ R0=R1+R2
+	ADDS R2,R3,#1		@ R2=R3+1 and set flags
+	MOV R7,#128		@ R7=128
+
+Addition
+
+	There are two instructions that handle addition: 
+	ADD (add) and ADC (add with carry)
+	
+	ADD (<suffix>) <dest>, <Operand1>, <Operand2>
+	ADC (<suffix>) <dest>, <Operand1>, <Operand2>
+
+	This program  clears R0
+	places 1 in R1
+	and sets all 32bits of R2
+	THIS is the largest number that can be stored in a 4byte register.
+	What will happen?
+
+	MOV R0, #0		
+	MOV R1, #1
+	MOV R2, #0xFFFFFFFF		@ This is -1 btw
+	ADDS R0,R1,R2
+	
+	What about when you want to adds, let's say a 128bit number?
+	"We have a 32 bit machine though?" <---Check program prog6b.s
+
+	When adding a number and you need to carry from the result of a 
+	previous addition of two registers, you want to use ADD with 'S'
+	suffix to turn on the Carry Flag if it has one.
+
+ 1	ADDS R1,R4,R7	@ add low words & check for a carry
+ 2	ADCS R2,R5,R8	@ add middle words with carry
+ 3	ADCS R3,R6,R9   @ add high words with carry
+ 
+	Line 1 does an addition and updates carry flag
+	Line 2 does an addition WITH carry and Updates carry flag
+	Line 3 does an addition WITH carry and Updates carry flag
+
+	
