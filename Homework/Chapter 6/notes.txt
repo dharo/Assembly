@@ -68,3 +68,79 @@ Addition
 	Line 3 does an addition WITH carry and Updates carry flag
 
 	
+Subtraction
+
+	4 Instructions for Subtraction
+	
+	SUB (<suffix>) <dest>, <Operand1>, <Operand2>
+	SBC	""       ""        ""	      ""
+	RSB     ""       ""        ""         ""
+	RSC     ""       ""        ""         ""
+
+	SUB - Straight forward subtraction, ignores flags
+	SBC - Subtractions that takes Carry flag into consideration
+	
+	RSB - Same as SUB, but Operands are switched.
+		ex:	SUB R0,R1,R2	@ subtracts R2 from R1 and saves in R0
+			RSB R0,R1,R2	@ subtracts R1 from R2 and saves in R0
+	
+	When performing the following:
+			MOV R0, #0	@ R0 = 0
+			MOV R1,0xFF	@ R1 = 0xFF = 255
+			MOV R2,0xFE	@ R2 = 0xFE = 254
+			SUBS R0,R1,R2	@ R0 = 0xFF-0xFE = 255-254
+
+	The result should be 1; however, the status register will show
+	that the carry flag has been set.
+
+	*Note, the carry flag is set because the computer doesnt actually 
+	perform a subtraction, but rather an addition of a negative number
+	by using Two's compliment. (Of course this stupid book doesn't 
+	explain that, it is inferred.
+
+	Subtraction = Addition of a negative number
+	0xFF = 0b1111 1111       0b1111 1111	
+	0xFE = 0b1111 1110     + 0b0000 0010	Two's Compliment
+				 0b0000 0001	With Carry Flag set
+				The Most significant bits ended up with a 
+				carry at the end of the word. This is why
+				carry flag is set when using SUBS
+	
+	RSBS R0,R1,R2		@ Reverses the subtraction as shown above
+				@ and updates carry flag
+	However, if we used the same values as before, this would
+	result in:
+			0xFFFFFFFF @ (-1) and carry flag is clear.
+	
+	0b1111 1110	  0b1111 1110
+	0b1111 1111 ----> 0b0000 0001 adds up to ob11111111 = -1
+
+	This book is garbage at explaining this /: Or maybe....
+	I understand it better than how it is explained?
+
+	
+Multiplication
+	32-bit multiplication, the first instructions takes the form:
+	
+	MUL (<suffix>) <dest>, <Operand1>, <Operand2>
+	
+	There are rules to how its used:
+		Dest: Must be a register, CANNOT be the same as 
+		      Operand1. R15 CANNOT be used as a destination.
+		Operand1: Must be a register, cannot be destination.
+		Operand2: Must be a register, cannot be an immediate
+			  constant or shifted operation.
+	Example of proper use: 
+		MUL S R0,R4,R5	@ R0=R4*R5 and set status
+	
+
+	MLA - Multiply with Accumulate
+	MLA (<suffix>) <dest>, <Operand1>, <Operand2>, <Sum> 
+	Allows to add the results of a multiplication to a total (<Sum>).
+	
+	MLA R0,R1,R2,R3		@ R0=(R1*R2)+R3
+	
+	The <dest>  may also be the same register as the <sum>
+	The above example can be written like so:
+	
+	MLA R0,R1,R2,R0		@ R0=(R1*R2)+R0
