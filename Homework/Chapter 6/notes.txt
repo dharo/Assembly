@@ -144,3 +144,21 @@ Multiplication
 	The above example can be written like so:
 	
 	MLA R0,R1,R2,R0		@ R0=(R1*R2)+R0
+
+Move Instructions
+
+	Used to load data into a register from another register or to load
+	a register with a specific value. (Instructions do not have an
+	Operand1)
+
+	MOV (<suffix>) <dest>, <Operand2>
+	MVN (<suffix>) <dest>, <Operand2>
+	
+	examples:
+	MOV R0, R1	@ Copy to R0, the contents of R1
+	MOV R5, #0xFF	@ Place in R5, the value 255
+
+	
+	MVN - MoVe Negative.
+		This takes the value of the number being moved and makes
+		it negative by way of twos compliment.
