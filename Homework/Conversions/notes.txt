@@ -1,0 +1,71 @@
+Conversions
+
+	Conversions have been discussed previously. Conversions can be 
+	defined as changing the number into a different base that the 
+	computer can use to perform calculations. In our case we will 
+	be changing bases (making conversions) from base10 (decimal)
+	to base2 and base16 (binary and hex respectively).
+
+	Previously we made simple conversions:
+
+	324 = 0001 0100 0100	@ binary 0b000101000100
+	    =  1     4   4	@ hex	 0x144
+
+	What about decimal places?
+
+	Let us convert 13.75 to binary and hex.
+
+	13 = D 		@ hex
+	   = 1101	@ binary
+	Take the part to the left of the decimal and then convert by
+	the following metod:
+	
+	.75 x 16 normally with a whole number you would divide
+		 but with fractions you cross multiply to divide.
+
+	.75 x 16 	@ for base 16
+	= .12 		@ 12 = C in hex
+	= .1100		@ 12 = 1100 in binary
+
+	13.75 Base2  = 1101.11
+	      Base16 = D.C
+
+	Another example with multiplication:
+	
+	8 x 3/4 = 6	8/1 x 3/4 = 24/4 = 6
+	8 = 1000
+	3/4 = .C
+	    = .11
+
+	Binary points = Just another name for decimal point
+			when youre talking about base2 (binary)
+			That's why it is called BINARY point here.
+			When Binary Point (BP) is 0, this means 
+			the number N x 2^(BP). Just like scientific
+			notation.
+
+	Because we are multiplying the numbers: 1000 x .11
+	It is much easier if we line them up accodringly.
+	This is called SCALING. We are going to scale the 
+	fraction upwards.
+
+	1000	@ BP=0  WD=4 ------>    1000    @ BP=0  WD=4
+	 .11	@ BP=0  WD=2 ------>	  11	@ BP=-2 WD=2
+					Here we moved the decimal over
+					two places. Thus, this goes from
+					being .11 x 2^0 to 11 x 2^-2
+					(Hint: those two are THE SAME)
+
+	Now multiply:	1000	@ BP=0  WD=4
+		      x	  11	@ BP=-2 WD=2
+		      --------
+			1000
+                     + 1000
+		       11000	@ BP=-2 WD=6
+		         110	@ BP=0  WD=3
+	What is 0110 base2 in base 10? 
+	It is 6!	
+
+	And that is how you multiply an integer with a fraction
+	with assembly and no access to floating point computer :)
+
