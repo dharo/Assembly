@@ -69,3 +69,21 @@ Conversions
 	And that is how you multiply an integer with a fraction
 	with assembly and no access to floating point computer :)
 
+Let's work on another example:
+			(straight to binary)	(to hex then binary)
+	48 x 9/16	48 = 0011 0000		9/16 = (9/16)x16
+						=9/16 x 16/1
+						=9/1 =.9 (HEX)
+						= .1001 x 2^0 (binary)
+						= 1001 x 2^-4
+
+	0011 0000	@ BP=0  WD=6	//BP = Binary point		
+	0000 1001	@ BP=-4 WD=4    //WD = Width (# of Significant Digits)
+
+	0000 0011	@ BP-4  WD2
+	0000 1001	@ BP4	WD4
+	0001 1011	@ BP0	WD6	//WD get added because MUL
+	The BP is 0 because when you multiply, the powers are added,
+	therefore they end up being at 0, how convenient for us.
+	0001 1011 = 27 in base 10.  
+	
