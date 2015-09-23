@@ -1,3 +1,7 @@
+@ This is calculating r^2 
+@ area = 110 stored to 1 byte
+@ conversion of 1/pi is stored in R2 as 3 bytes 0x517CC1
+@ result (R0) stored as 1 byte
 .global _start
 _start:
 	MOV R1, #110		@ BP0 WD8
