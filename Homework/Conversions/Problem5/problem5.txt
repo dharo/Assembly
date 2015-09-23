@@ -1,0 +1,6 @@
+5)	Calculate Area using area = pi(r^2)
+	Radius: 6.5	<---	To be held in 2 bytes
+	Conversion	<---	To be held in 2 bytes
+	Result: Area	<---	To be held in 1 byte
+
+Hint: Binary point changes when you square the radius.

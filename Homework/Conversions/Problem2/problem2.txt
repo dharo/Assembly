@@ -1,0 +1,6 @@
+2)	Calculate r^2
+	Area:	110	<---	To be held in 1 byte
+	Conversion	<---	To be held in 3 bytes
+	Result 		<---	To be held in 1 byte
+
+Hint: Conversion would be (1/pi)

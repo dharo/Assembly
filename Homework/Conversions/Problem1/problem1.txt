@@ -1,0 +1,4 @@
+1)	Convert Months to years
+	88 months 	<---	To be held in 1 byte
+	Conversion 	<---	To be held in 3 bytes
+	Result		<---	To be held in 1 byte	

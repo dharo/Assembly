@@ -1,0 +1,5 @@
+4)	Calculate Area using area = pi(r^2)
+	Radius: 6	--->	to be held in 1 byte
+	Conversion	--->	to be held in 3 bytes
+	Result 		--->	to be held in 1 byte
+
