@@ -1,0 +1,99 @@
+Conversions Review
+
+Blueprint for converting fractions to other bases
+
+//Legend
+x = integer
+y = fraction
+b = base converting to
+z = fraction resulting from multiplication between fraction and base.
+f = result of fraction multiplication (this is the conveted result)
+
+//Convert Integer portion
+x.y <---asume this is the initial base 
+
+    x%b     = d(1)
+int(x/b)%b  = d(2)   int(x/b)=x2
+int(x2/b)%b = d(3)  int(x2/b)=x3
+
+//Convert Fraction portion
+
+y * b  = f(1).z(1)
+z(1)*b = f(2).z(2)
+z(2)*b = f(3)
+
+(d3)(d2)(d1).f(1)f(2)f(3)   <---x.y converts to this
+
+//////////////////////////////////////////////////////////////////////
+Making batch fies to assemble execute and display result
+
+nano prog.bat
+
+in this bat file
+
+as -o prog.o prog.s
+ld -o prog prog.o
+./prog
+echo $?
+
+save and exit
+THEN
+change permissions to the bat file
+
+chmod 700 prog.bat
+
+now to run it, type "./prog.bat"
+which will echo $? the result.
+
+Review make files from the book to make a more useful utility for all programs.
+Chapter 7
+
+////////////////////////////////////////////////////////////////////////
+
+26/6 -> 26 ->  11010
+	6  ->  00110
+count 1 = 12 -> 1100
+count 2 = 24 -> 11000		@ the count is being shifted
+count 4 = 48 -> 110000		@ shift left until it is too large
+count 2 = 24 -> 11000 		@ then you shit back
+
+you take the largest value that doesnt go over, and subtract
+
+so 26 - 24      11010
+		11000 = 00010 = 2 (this is the remainder)
+*the counter is the result of the integer division.
+*the result of the subtraction after shifting is the result of the mod%
+
+
+Another example (45 divided by 6)
+Notes: 	Division
+	1) Shift left ot scale
+	THEN
+	2)Subtraction
+		3)shift RIGHT
+	GoTo step 2)
+	
+	
+R1 = 45	------>	101101   //compare these two values
+R2 = 6	------> 000110   //and shift the smallest value
+R3 = 1		@ represents scale
+
+	101101
+	001100	<----shifted 6 1 place, now 12
+		R3 is also shifted to show R3 = 2
+	101101	
+	011000 <-----shifted 12 1 place, now 24
+		R3 is also shifted to show R3 = 4
+	101101
+	110000 < -----shifted 24 1 place, now 48
+		R3 is also shifted to show R3 = 8
+	110000 > 101101, so we have to shift R2 AND R3 back 1 place
+
+So now we have the largest shifted value that fits inside the original largest 
+number we were dividing.
+	  101101
+	- 011000 = 10101
+
+
+
+*****Review the Lehr's Github CSC11_48982/Class/Week5a******
