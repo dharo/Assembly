@@ -21,12 +21,18 @@ LSR R2, #1
 
 /* Loop and keep subtracting off the shifted denominator*/
 
-while(R0>=R3){		//keep looping until division is complete
-	R1+=R2;		//increment the division by the increment
-	R0-=R3;		//subtract shifted denominator with remainder of numerator
-	//shift right until denominator is less than numerator
-	while(r2>1 && R3 > R0){	//shift denominator until less than numerator
-		R2>>=1;		//shift increment left
-		R3>>=1;		//shift denominator left
-	}
-}
+
+CMP R0, R3	@ keep looping until division is complete
+BGE _whileR0_GE_R3	@ increment the division by the increment
+_whileR0_GE_R3:
+	ADD R1,R1,R2
+	SUB R0,R0,R3
+	_whileR2_GT1_and_R3GTR0:
+		LSR R2, #1
+		LSR R3, #1
+		CMP R2, #1
+CMP R0, R3
+
+_output:
+	MOV R7, #1
+	SWI 0
