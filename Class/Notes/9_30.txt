@@ -1,0 +1,57 @@
+Why use sclaing div/mod vs repeated subtraction?
+
+repeated subtraction uses 5 operations
+	1 Compare
+	2 branching
+	2 increment operations
+
+Reasons why not to use
+
+take a number (2^31)-1  <----numerator
+     divided by 1       <----denominator
+
+This would take the subtraction method to complete
+after 5 x ((2^31)-1) operations.
+
+Better to perform the division this way
+	1) Shift left 32 times --> 5 operations
+	2) Subtract and shift 31 times --> 5 operations
+		This results in about 300 operations
+	vs	2 billion operations
+
+* Of course needing to use a computer to divide by 1 is stupid, 
+  but this is to prove that successive subtractions is slow
+
+Example of Div with shift	Denominator	Increment
+Numerator---->  55 = 110111	  
+Denominator-->   6 = 000110	    6		    1
+		       1100	    12		    2
+		     011000	    24		    4
+		     110000	    48		    8
+		    1100000	    96		   16
+		     110000	    48		    8
+
+Now Subtract 55-48
+			110111
+			110000 = 0111
+NOW Shift 48 to the right until it is SMALLER than the result of the 
+subtraction.
+				Denominator	Increment
+	48	110000		    48		    8
+		011000		    24	 	    4
+		001100		    12		    2
+		000110		     6		    1
+
+110 is smaller than 111
+The difference of these is the remainder, thus it is your modulus.
+Now, you take the Increment of this operation and add it to the increment 
+of the previous operation that required you to scale up.
+
+In summary, scale up the denominator to the largest number that fits inside the 
+numerator without overflowing. Make sure to SCALE the increment as well(save it). 
+Subtract the scaled denominator from the numerator. Take the result of this
+subtraction and save it. Shift the denominator back down (along with the
+increment)until it is smaller than the result of the shifted subtraction, 
+add the increment to the increment saved from prefious shift. This is the
+answer to the integer division. If you subtract the two values, you get the
+answer to the modulus (remainder).
