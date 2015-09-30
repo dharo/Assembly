@@ -49,13 +49,14 @@ Review make files from the book to make a more useful utility for all programs.
 Chapter 7
 
 ////////////////////////////////////////////////////////////////////////
+Shifted Division
 
 26/6 -> 26 ->  11010
 	6  ->  00110
 count 1 = 12 -> 1100
 count 2 = 24 -> 11000		@ the count is being shifted
 count 4 = 48 -> 110000		@ shift left until it is too large
-count 2 = 24 -> 11000 		@ then you shit back
+count 2 = 24 -> 11000 		@ then you shit back once
 
 you take the largest value that doesnt go over, and subtract
 
@@ -97,3 +98,5 @@ number we were dividing.
 
 
 *****Review the Lehr's Github CSC11_48982/Class/Week5a******
+^This is so you understand make files and know how to use GCC to complile
+ instead of link dynamically (ld)
