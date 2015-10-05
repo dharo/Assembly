@@ -1,0 +1,5 @@
+When making comparisons such as
+if(x ==y && y <= z)
+
+break down into two compares by using De Morgan's law
+refer to Dr. Lehr's div_mod3 for example.
