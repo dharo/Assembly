@@ -1,4 +1,4 @@
-/* Switch STATEMENT
+/* Example of IF/IF-ELSE STATEMENT
 
    Input 1 -> 5 is (Mon -> Fri)
    Output
@@ -18,17 +18,17 @@ _start:
 	MOV R3, #3	@ wednesday outputs 11
 	MOV R4, #4 	@ thursday  outputs 5
 	MOV R5, #5	@ Friday    outputs 1
-
+/* Start of if statements */
 	CMP R0, R1	@ compare with monday
-	BEQ _mon        @ Case monday
+	BEQ _mon        @ if R0 == monday
 	CMP R0, R2	@ compare with tuesday
-	BEQ _tues	@ Case tuesday
+	BEQ _tues	@ if R0 == tuesday
 	CMP R0, R3	@ compare with wednesday
-	BEQ _wed	@ Case wednesday
+	BEQ _wed	@ if R0 == wednesday
 	CMP R0, R4	@ compare with thursday
-	BEQ _thurs	@ Case thursday
+	BEQ _thurs	@ if R0 == thursday
 	CMP R0, R5	@ compare with friday
-	BEQ _friday	@ Case friday
+	BEQ _friday	@ if R0 == friday
 	BAL _default
 _default:
 	MOV R0, #0
