@@ -1,0 +1,27 @@
+When debugging with gcc, you need to prep the compiled 
+program to be gebugged.
+Website for reference:
+http://www.tutorialspoint.com/gnu_debugger/gdb_commands.htm
+
+
+use -g flag like so:
+(Replace 'prog' with name of program)
+
+as -g -o prog.o prog.s
+gcc -o prog prog.o
+
+To start debugger:
+gdb ./prog
+
+start main       	//starts to step into program from main
+info registers r1...	//shows data in registers
+disassemble		//spits out program in readable text
+			//shows what line debugger is on
+s			//short for step, performs action in current
+			//line and stops at the next line
+c			//continues to run program until next breakpoint
+			//or error
+info b			//list breakpoints
+p var			//print contents of var
+quit			//self-explanatory
+
