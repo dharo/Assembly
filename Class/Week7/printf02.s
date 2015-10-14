@@ -15,6 +15,7 @@ number_read: .word 0
 .balign 4
 return: .word 0
 .balign 4
+.global return2
 return2: .word 0
 .text
 /*

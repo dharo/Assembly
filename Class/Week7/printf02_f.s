@@ -1,6 +1,8 @@
 /*
 mult_by_5 function
 */
+.global mult_by_5
+
 mult_by_5:
  ldr r1, address_of_return2 /* r1 ← &address_of_return */
  str lr, [r1] /* *r1 ← lr */
@@ -8,4 +10,4 @@ mult_by_5:
  ldr lr, address_of_return2 /* lr ← &address_of_return */
  ldr lr, [lr] /* lr ← *lr */
  bx lr /* return from main using lr */
-address_of_return2 : .word return2
+ address_of_return2 : .word return2
