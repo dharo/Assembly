@@ -1,0 +1,14 @@
+Convert C++ program to Assembly
+Program can be found here:
+https://github.com/ml1150258/LehrMark_CSC11_48982/blob/master/Class/ExampleHmwk/main.cpp
+
+1. toCelcius(int b, int e)  //loop until end of range and display table
+2. toFahren(int b, int e)	//loop until end of range and display table
+
+3. (menu)		
+	1. Choose toCelcius() or toFahren() (repeat if choice != 1 || choice != 2)
+	2. Input temperature range to pass into function (two variables)
+	3. Provide arguments and branch to choice (toCelcius/toFahren)
+	4. Ask if they want to repeat
+		if yes -> branch to top of menu
+		else -> exit program
