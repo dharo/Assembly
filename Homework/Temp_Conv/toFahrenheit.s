@@ -19,15 +19,15 @@ return2: .word 0
 .text
 /*
 Celsius to Fahrenheit
-Fahrenheit = 9/5 * cel+32
+Fahrenheit = T(c) * 1.8 +32
 */
 toFahrenheit:
  ldr r1, address_of_return2 	/* r1 ← &address_of_return */
  str lr, [r1] 			/* *r1 ← lr */
- MOV R5, #0x20		/* 32 in hex (used for Addition)*/
+ MOV R5, #0x200		/* 32 in hex (used for Addition)*/
  LDR R2, =0x12		/* 9/5 = 1.8   BP -4 WD 6*/
- ADD R3, R0, R5		/* R3 = Celsius(input) + 32*/
- MUL R0, R2, R3		/* R0 = (9/5)*(C+32) */
+ MUL R0, R0, R2		/* R3 = Celsius(input) * 1.8*/
+ ADD R0, R0, R5		/* R0 = (9/5)*(C+32) */
  LSR R0, #4		/* Scale back down to fraction size*/
  ldr lr, address_of_return2 	/* lr ← &address_of_return */
  ldr lr, [lr] 			/* lr ← *lr */
@@ -45,7 +45,7 @@ main:
  bl scanf 			/* call to scanf */
  ldr r0, address_of_number_read /* r0 ← &number_read */
  ldr r0, [r0] 			/* r0 ← *r0 */
- bl toCelsius
+ bl toFahrenheit
  mov r2, r0 			/* r2 ← r0 */
  ldr r1, address_of_number_read /* r1 ← &number_read */
  ldr r1, [r1] 			/* r1 ← *r1 */
