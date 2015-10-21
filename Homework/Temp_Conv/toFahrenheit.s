@@ -24,11 +24,11 @@ Fahrenheit = T(c) * 1.8 +32
 toFahrenheit:
  ldr r1, address_of_return2 	/* r1 ← &address_of_return */
  str lr, [r1] 			/* *r1 ← lr */
- MOV R5, #0x200		/* 32 in hex (used for Addition)*/
- LDR R2, =0x12		/* 9/5 = 1.8   BP -4 WD 6*/
- MUL R0, R0, R2		/* R3 = Celsius(input) * 1.8*/
- ADD R0, R0, R5		/* R0 = (9/5)*(C+32) */
- LSR R0, #4		/* Scale back down to fraction size*/
+ MOV R5, #0x20			/* 32 in hex (used for Adding to Celsius)*/
+ LDR R2, =0x1DDD		/* 9/5 = 1.8   BP -12 WD 16*/
+ ADD R0, R0, R5			/* Celsius + 32*/
+ MUL R0, R0, R2			/* R3 = Celsius(input) * 1.8*/
+ LSR R0, #12			/* Scale back down to fraction size*/
  ldr lr, address_of_return2 	/* lr ← &address_of_return */
  ldr lr, [lr] 			/* lr ← *lr */
  bx lr 				/* return from main using lr */
