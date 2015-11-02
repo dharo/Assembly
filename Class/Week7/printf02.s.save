@@ -37,8 +37,8 @@ main:
  ldr r1, [r1]                    /* r1 ← *r1 */
  ldr r0, address_of_message2     /* r0 ← &message2 */
  bl printf                       /* call to printf */
-// ldr lr, address_of_return       /* lr ← &address_of_return */
-// ldr lr, [lr] 			 /* lr ← *lr */
+ ldr lr, address_of_return       /* lr ← &address_of_return */
+ ldr lr, [lr] 			 /* lr ← *lr */
  bx lr 				 /* return from main using lr */
 address_of_message1 : .word message1
 address_of_message2 : .word message2
