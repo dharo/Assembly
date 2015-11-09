@@ -1,0 +1,9 @@
+To Do
+
+-instead of branching to printtable after a succesful write to square
+	-branch to a function that checks win
+	example:	player2_checkwin:
+				-check all win cases
+				-if any of them are true 
+					-print player2 win
+					-branch to exit
