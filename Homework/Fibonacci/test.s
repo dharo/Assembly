@@ -16,7 +16,7 @@ main:
 	bl scanf		//scanf("%d",topofstack);
 
 	ldr r0, [sp]		//loads data inputted to stack to r0
-	bl r_fibonacci
+	bl fib
 	mov r2, r0
 	ldr r1, [sp]
 	ldr r0, =message2
