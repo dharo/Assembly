@@ -8,7 +8,6 @@ message2: .asciz "\nThe %dth term of the Fibonacci Sequence is %d\n"
 main:
 	str lr, [sp,#-4]!	//Push lr to top of stack
 	sub sp, sp, #4		//make room for 4byte integer
-				//to hold input from user
 	ldr r0, =message1
 	bl printf
 	ldr r0, =format		//_____("%d",__);
@@ -24,4 +23,4 @@ main:
 exit:
 	add sp, sp, #+4		//discard number read by scanf
 	ldr lr, [sp], #+4	//pop the top of stack and out in lr
-	bx lr
+//	bx lr
