@@ -25,8 +25,9 @@ toFahrenheit:
  ldr r1, address_of_return2 	/* r1 ← &address_of_return */
  str lr, [r1] 			/* *r1 ← lr */
  MOV R4, #0x20			/* 32 in hex*/
- MOV R2, #1.8     		/* 18*10^-1 = 1.8   BP -4 WD 5*/
+ LDR R2, =0x1CCCCC     		/* 18*10^-1 = 1.8   BP -4 WD 5*/
  MUL R0, R0, R2			/* R0 = Celsius(input) * 1.8*/
+ LSR R0, #20
  ADD R0, R0, R4			/* Celsius + 32*/
 
  ldr lr, address_of_return2 	/* lr ← &address_of_return */
