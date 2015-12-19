@@ -1,5 +1,7 @@
 .data
 .balign 4
+cats_game: .asciz "\n\nCat's Game, No Winner!\n\n"
+.balign 4
 winner_p1: .asciz "\n\nPlayer 1 Wins!!\n\n"
 .balign 4
 winner_p2: .asciz "\n\nPlayer 2 Win!!\n\n"
@@ -579,6 +581,10 @@ player_chkwin:
                 bl strcmp
                 beq player1wins
                 bne player2wins
+	no_winner:
+		ldr r0, =cats_game
+		bl printf
+		bal exit
 player1wins:			//display message when player 1 wins
 	ldr r0, =winner_p1
 	bl printf
