@@ -29,12 +29,12 @@ input_selection:
 	ldr r1, =1		//compare input to choices, branch to selection
 	cmp r0, r1
 	beq num_guess		//if selection == 1
-/*
+
 	ldr r0,=selection
 	ldr r0, [r0]
 	cmp r0, #2
-	beq savings			//if selection == 2
-
+	beq savings_func		//if selection == 2
+/*
 	ldr r0, =selection
 	ldr r0, [r0]
 	cmp r0, #3
@@ -50,6 +50,9 @@ exit:
 	bx lr
 num_guess:
 	bl guess_num
+	bal prompt
+savings_func:
+	bl savings
 	bal prompt
 
 //external
