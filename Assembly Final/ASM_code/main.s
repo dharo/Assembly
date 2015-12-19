@@ -34,7 +34,7 @@ input_selection:
 	ldr r0, [r0]
 	cmp r0, #2
 	beq savings_func		//if selection == 2
-/*
+
 	ldr r0, =selection
 	ldr r0, [r0]
 	cmp r0, #3
@@ -44,7 +44,7 @@ input_selection:
 	ldr r0, [r0]
 	cmp r0, #4
 	beq qeq_flt			//if selection == 4
-*/
+
 exit:
 	pop {lr}
 	bx lr
@@ -54,7 +54,12 @@ num_guess:
 savings_func:
 	bl savings
 	bal prompt
-
+qeq_int:
+	bl quad_int
+	bal prompt
+qeq_flt:
+	bl quad_flt
+	bal prompt
 //external
 .global printf
 .global scanf
